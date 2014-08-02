@@ -1,0 +1,28 @@
+{
+  "name": "zbarimg",
+  "version": "1.0.8",
+  "description": "Scan photos using ZBar in node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "scan",
+    "qr",
+    "image",
+    "photo",
+    "detect",
+    "zbar",
+    "code",
+    "zbarimg",
+    "bar"
+  ],
+  "authors": [
+    "Tobias Reich <tobias.reich.ich@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/electerious/zbarimg.git"
+  },
+  "license": "MIT"
+}
