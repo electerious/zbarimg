@@ -26,7 +26,7 @@
       if (stdout != null) {
         if (stdout.indexOf('QR-Code:') !== -1) {
           stdout = stdout.replace('QR-Code:', '');
-          stdout = stdout.slice(0, -2);
+          stdout = stdout.slice(0, -1);
           callback(null, stdout);
           return true;
         } else {

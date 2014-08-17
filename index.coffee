@@ -32,7 +32,7 @@ module.exports = (photo, callback) ->
 			if stdout.indexOf('QR-Code:') isnt -1
 
 				stdout = stdout.replace 'QR-Code:', '' # Remove type
-				stdout = stdout.slice 0, -2 # Remove \n
+				stdout = stdout.slice 0, -1 # Remove \n
 				callback null, stdout
 				return true
 
