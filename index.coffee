@@ -1,11 +1,10 @@
 fs		= require 'fs'
 process	= require 'child_process'
 
-escapeshell = (cmd) ->
-
-	return '"' + cmd.replace(/(["'$`\\])/g,'\\$1') + '"';
-
 module.exports = (photo, callback) ->
+
+	stdout	= ''
+	stderr	= ''
 
 	# Catch missing parameter
 	if	not photo? or
@@ -16,16 +15,19 @@ module.exports = (photo, callback) ->
 			callback err, null
 			return false
 
-	# Escape
-	photo = escapeshell photo
-
 	# Run zbarimg
-	zbarimg = process.exec "zbarimg #{ photo } -q", (err, stdout, stderr) ->
+	zbarimg = process.spawn 'zbarimg', [photo, '-q']
 
-		if err?
+	zbarimg.stdout.setEncoding 'utf8'
+	zbarimg.stderr.setEncoding 'utf8'
 
-			callback err, null
-			return false
+	zbarimg.stdout.on 'data', (data) ->
+		stdout += data
+
+	zbarimg.stderr.on 'data', (data) ->
+		stderr += data
+
+	zbarimg.on 'close', (code) ->
 
 		if stdout?
 
