@@ -7,9 +7,10 @@
   process = require('child_process');
 
   module.exports = function(photo, callback) {
-    var err, stderr, stdout, zbarimg;
+    var err, killed, stderr, stdout, zbarimg;
     stdout = '';
     stderr = '';
+    killed = false;
     if ((photo == null) || (callback == null) || photo.length === 0) {
       err = new Error('Missing parameter');
       callback(err, null);
@@ -24,7 +25,19 @@
     zbarimg.stderr.on('data', function(data) {
       return stderr += data;
     });
+    zbarimg.on('error', function(err) {
+      if (killed === true) {
+        return false;
+      }
+      killed = true;
+      callback(err, null);
+      return true;
+    });
     return zbarimg.on('close', function(code) {
+      if (killed === true) {
+        return false;
+      }
+      killed = true;
       if (stdout != null) {
         if (stdout.indexOf('QR-Code:') !== -1) {
           stdout = stdout.replace('QR-Code:', '');

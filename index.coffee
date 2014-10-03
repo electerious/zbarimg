@@ -5,6 +5,7 @@ module.exports = (photo, callback) ->
 
 	stdout	= ''
 	stderr	= ''
+	killed	= false
 
 	# Catch missing parameter
 	if	not photo? or
@@ -27,7 +28,20 @@ module.exports = (photo, callback) ->
 	zbarimg.stderr.on 'data', (data) ->
 		stderr += data
 
+	zbarimg.on 'error', (err) ->
+
+		# Avoid fn called twice
+		return false if killed is true
+		killed = true
+
+		callback err, null
+		return true
+
 	zbarimg.on 'close', (code) ->
+
+		# Avoid fn called twice
+		return false if killed is true
+		killed = true
 
 		if stdout?
 
