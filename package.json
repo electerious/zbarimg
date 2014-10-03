@@ -1,6 +1,6 @@
 {
   "name": "zbarimg",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Scan photos using ZBar in node",
   "main": "index.js",
   "scripts": {
