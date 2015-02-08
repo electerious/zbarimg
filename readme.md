@@ -2,7 +2,7 @@
 
 Scan photos using `zbarimg` in node.js. This module is a wrapper around the `zbarimg` command from [ZBar bar code reader](http://zbar.sourceforge.net).
 
-The module is only made and tested with QR-Codes!
+The module has only been tested with QR-Codes!
 
 ## Installation
 
