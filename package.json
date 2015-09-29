@@ -4,6 +4,7 @@
   "description": "Scan photos using ZBar in node",
   "main": "index.js",
   "scripts": {
+  	"compile": "./node_modules/.bin/coffee -c ./index.coffee",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -24,5 +25,8 @@
     "type": "git",
     "url": "https://github.com/electerious/zbarimg.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "coffee-script": "^1.10.0"
+  }
 }

@@ -45,16 +45,18 @@ module.exports = (photo, callback) ->
 
 		if stdout?
 
-			if stdout.indexOf('QR-Code:') isnt -1
+			codeName = stdout.slice 0, (stdout.indexOf(':') + 1) # Can be 'QR-Code:' or 'EAN-13:' or anything else (ask expert)
 
-				stdout = stdout.replace 'QR-Code:', '' # Remove type
+			if codeName.length > 0
+
+				stdout = stdout.replace codeName, '' # Remove type
 				stdout = stdout.slice 0, -1 # Remove \n
 				callback null, stdout
 				return true
 
 			else
 
-				err = new Error 'No QR-Code found or barcode not supported'
+				err = new Error 'No code found or barcode is not supported'
 				callback err, null
 				return false
 
