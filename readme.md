@@ -1,3 +1,5 @@
+> WARNING: This module has been deprecated.
+
 # zbarimg
 
 Scan photos using `zbarimg` in node.js. This module is a wrapper around the `zbarimg` command from [ZBar bar code reader](http://zbar.sourceforge.net).
